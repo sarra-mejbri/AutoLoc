@@ -10,8 +10,8 @@ import lombok.Setter;
 @Table(name = "employe")
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Employe {
 
     @Id
@@ -27,4 +27,7 @@ public class Employe {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private RoleEmploye role;
+
+    @ManyToOne
+    private Agence agence;
 }

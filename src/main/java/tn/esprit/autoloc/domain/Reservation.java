@@ -12,8 +12,8 @@ import java.time.LocalDate;
 @Table(name = "reservation")
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Reservation {
 
     @Id
@@ -29,4 +29,13 @@ public class Reservation {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private StatutReservation statut;
+
+    @ManyToOne
+    private Client client;
+
+    @ManyToOne
+    private Vehicule vehicule;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Contrat contrat;
 }

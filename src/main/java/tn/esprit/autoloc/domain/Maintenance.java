@@ -12,8 +12,8 @@ import java.time.LocalDate;
 @Table(name = "maintenance")
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Maintenance {
 
     @Id
@@ -28,4 +28,7 @@ public class Maintenance {
 
     @Column(nullable = false, length = 255)
     private String description;
+
+    @ManyToOne
+    private Vehicule vehicule;
 }
