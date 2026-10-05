@@ -48,9 +48,6 @@ public class Vehicule {
     @OneToMany(mappedBy = "vehicule")
     private List<Reservation> reservations;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vehicule", orphanRemoval = true)
-    private List<Maintenance> maintenances;
-
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Equipement> equipements;
 }

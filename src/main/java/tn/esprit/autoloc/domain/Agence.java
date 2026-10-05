@@ -37,4 +37,8 @@ public class Agence {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "agence")
     private List<Employe> employes;
+
+
+
+
 }
