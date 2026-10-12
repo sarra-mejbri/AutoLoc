@@ -8,7 +8,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "client")
 @Getter
@@ -40,5 +40,6 @@ public class Client {
     private LocalDate dateInscription;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
+    @JsonIgnore
     private List<Reservation> reservations;
 }

@@ -1,9 +1,14 @@
 package tn.esprit.autoloc.service;
 
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 import tn.esprit.autoloc.domain.Agence;
 import tn.esprit.autoloc.repository.AgenceRepository;
 
 import java.util.List;
+
+@Service
+@AllArgsConstructor
 
 public class AgenceService implements IAgenceService  {
     AgenceRepository cRepo;
