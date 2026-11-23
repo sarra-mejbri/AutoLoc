@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import tn.esprit.autoloc.domain.Reservation;
 import tn.esprit.autoloc.service.IreservationService;
 
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
@@ -36,12 +37,12 @@ public class ReservationController {
         return reserService.updateReservation(p);
     }
 
-    // ----- Atelier Keywords -----
 
-    // Q14 : GET /reservation/getDateDebutApres/2026-01-01
+
+    // Q14
     @GetMapping("/getDateDebutApres/{date}")
     public List<Reservation> getReservationsDateDebutApres(
-            @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date){
+            @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date){
         return reserService.getReservationsDateDebutApres(date);
     }
 }

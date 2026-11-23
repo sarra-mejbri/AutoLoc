@@ -54,37 +54,37 @@ public class VehiculeController {
 
     // ----- Atelier Keywords -----
 
-    // Q1 : GET /vehicule/getByMarque/Renault
+    // Q1
     @GetMapping("/getByMarque/{marque}")
     public List<Vehicule> getVehiculesByMarque(@PathVariable String marque){
         return VehiculeService.getVehiculesByMarque(marque);
     }
 
-    // Q2 : GET /vehicule/getByCategorie/SUV
+    // Q2
     @GetMapping("/getByCategorie/{categorie}")
     public List<Vehicule> getVehiculesByCategorie(@PathVariable CategorieVehicule categorie){
         return VehiculeService.getVehiculesByCategorie(categorie);
     }
 
-    // Q3 : GET /vehicule/getDisponibles
+    // Q3
     @GetMapping("/getDisponibles")
     public List<Vehicule> getVehiculesDisponibles(){
         return VehiculeService.getVehiculesDisponibles();
     }
 
-    // Q5 : GET /vehicule/getByMarqueContenant/ren
+    // Q5
     @GetMapping("/getByMarqueContenant/{marque}")
     public List<Vehicule> getVehiculesByMarqueContenant(@PathVariable String marque){
         return VehiculeService.getVehiculesByMarqueContenant(marque);
     }
 
-    // Q8 : GET /vehicule/getTarifSuperieurA/100
+    // Q8
     @GetMapping("/getTarifSuperieurA/{tarif}")
     public List<Vehicule> getVehiculesTarifSuperieurA(@PathVariable BigDecimal tarif){
         return VehiculeService.getVehiculesTarifSuperieurA(tarif);
     }
 
-    // Q11 : GET /vehicule/getDisponiblesByMarque/Renault
+    // Q11
     @GetMapping("/getDisponiblesByMarque/{marque}")
     public List<Vehicule> getVehiculesDisponiblesByMarque(@PathVariable String marque){
         return VehiculeService.getVehiculesDisponiblesByMarque(marque);

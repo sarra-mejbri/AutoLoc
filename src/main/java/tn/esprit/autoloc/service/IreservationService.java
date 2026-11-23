@@ -2,6 +2,7 @@ package tn.esprit.autoloc.service;
 
 import tn.esprit.autoloc.domain.Reservation;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Date;
 
@@ -14,5 +15,5 @@ public interface IreservationService {
     List< Reservation> addReservations (List< Reservation>  Reservations);
 
     // ----- Atelier Keywords -----
-    List<Reservation> getReservationsDateDebutApres(Date date);              // Q14
+    List<Reservation> getReservationsDateDebutApres(LocalDate date);              // Q14
 }

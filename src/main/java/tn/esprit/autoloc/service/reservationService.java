@@ -7,6 +7,7 @@ import tn.esprit.autoloc.domain.Reservation;
 import tn.esprit.autoloc.repository.ReservationRepository;
 import tn.esprit.autoloc.repository.ReservationRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Date;
 @Service
@@ -47,11 +48,13 @@ public class reservationService implements IreservationService {
         return (List<Reservation>) resRepo.saveAll(Reservations);
     }
 
+
+
     // ----- Atelier Keywords -----
 
     // Q14
     @Override
-    public List<Reservation> getReservationsDateDebutApres(Date date) {
+    public List<Reservation> getReservationsDateDebutApres(LocalDate date) {
         return resRepo.findByDateDebutAfter(date);
     }
 }
