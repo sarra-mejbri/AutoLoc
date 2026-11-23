@@ -23,7 +23,7 @@ public interface ReservationRepository extends CrudRepository<Reservation,Long> 
     @Query("SELECT r FROM Reservation r WHERE r.client.idClient = :idClient")
     List<Reservation> getReservationsByClient(@Param("idClient") Long idClient);
 
-    // Nombre de réservations effectuées par chaque client
-    @Query("SELECT r.client.idClient, COUNT(r) FROM Reservation r GROUP BY r.client.idClient")
+    // Nombre de réservations de chaque client (y compris les clients sans réservation)
+    @Query("SELECT c.idClient, c.nom, COUNT(r) FROM Client c LEFT JOIN c.reservations r GROUP BY c.idClient, c.nom")
     List<Object[]> countReservationsByClient();
 }
