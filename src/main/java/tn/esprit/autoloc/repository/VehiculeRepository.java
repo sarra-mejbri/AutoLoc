@@ -39,7 +39,7 @@ public interface VehiculeRepository extends CrudRepository<Vehicule,Long> {
     @Query("SELECT v FROM Vehicule v WHERE v.agence.id = :idAgence")
     List<Vehicule> getVehiculesByAgence(@Param("idAgence") Long idAgence);
 
-    // Nombre de véhicules de chaque agence (y compris les agences sans véhicule)
-    @Query("SELECT a.id, a.nom, COUNT(v) FROM Agence a LEFT JOIN a.vehicules v GROUP BY a.id, a.nom")
+    // Nombre de véhicules de chaque agence
+    @Query("SELECT v.agence.id, v.agence.nom, COUNT(v) FROM Vehicule v GROUP BY v.agence.id, v.agence.nom")
     List<Object[]> countVehiculesByAgence();
 }
