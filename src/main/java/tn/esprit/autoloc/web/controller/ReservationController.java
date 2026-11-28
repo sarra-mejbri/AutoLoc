@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.autoloc.domain.Reservation;
-import tn.esprit.autoloc.dto.ReservationDTO;
+import tn.esprit.autoloc.web.dto.ReservationDTO;
 import tn.esprit.autoloc.service.IreservationService;
 import tn.esprit.autoloc.service.ProjetMapper;
 

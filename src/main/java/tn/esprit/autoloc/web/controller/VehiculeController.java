@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.autoloc.domain.CategorieVehicule;
 import tn.esprit.autoloc.domain.Vehicule;
-import tn.esprit.autoloc.dto.VehiculeDTO;
+import tn.esprit.autoloc.web.dto.VehiculeDTO;
 import tn.esprit.autoloc.service.IvehiculeService;
 import tn.esprit.autoloc.service.ProjetMapper;
 

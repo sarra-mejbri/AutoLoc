@@ -3,7 +3,7 @@ package tn.esprit.autoloc.web.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.autoloc.domain.Agence;
-import tn.esprit.autoloc.dto.AgenceDTO;
+import tn.esprit.autoloc.web.dto.AgenceDTO;
 import tn.esprit.autoloc.service.IagenceService;
 import tn.esprit.autoloc.service.ProjetMapper;
 

@@ -3,7 +3,7 @@ package tn.esprit.autoloc.service;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import tn.esprit.autoloc.domain.*;
-import tn.esprit.autoloc.dto.*;
+import tn.esprit.autoloc.web.dto.*;
 
 import java.util.List;
 
