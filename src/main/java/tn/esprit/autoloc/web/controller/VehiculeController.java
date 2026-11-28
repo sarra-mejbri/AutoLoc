@@ -2,91 +2,98 @@ package tn.esprit.autoloc.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.autoloc.domain.Vehicule;
-import tn.esprit.autoloc.service.IvehiculeService;
-
-
-import java.util.List;
 import tn.esprit.autoloc.domain.CategorieVehicule;
+import tn.esprit.autoloc.domain.Vehicule;
+import tn.esprit.autoloc.dto.VehiculeDTO;
+import tn.esprit.autoloc.service.IvehiculeService;
+import tn.esprit.autoloc.service.ProjetMapper;
+
 import java.math.BigDecimal;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/vehicule")
 public class VehiculeController {
+
     private final IvehiculeService VehiculeService;
+    private final ProjetMapper mapper;
+
     @PostMapping("/addVehicule")
-    public Vehicule addVehicule(@RequestBody Vehicule c){
-        return VehiculeService.addVehicule(c);
+    public VehiculeDTO addVehicule(@RequestBody Vehicule c){
+        return mapper.toVehiculeDto(VehiculeService.addVehicule(c));
     }
+
     @GetMapping("/getVehicules")
-    public List<Vehicule> getAllVehicules(){
-        return VehiculeService.retrieveAllVehicules();
+    public List<VehiculeDTO> getAllVehicules(){
+        return mapper.toVehiculeDtoList(VehiculeService.retrieveAllVehicules());
     }
+
     @GetMapping("/getVehiculeId/{idc}")
-    public Vehicule getVehiculeById(@PathVariable long idc){
-        return VehiculeService.retrieveVehicule(idc);
+    public VehiculeDTO getVehiculeById(@PathVariable long idc){
+        return mapper.toVehiculeDto(VehiculeService.retrieveVehicule(idc));
     }
+
     @DeleteMapping("/deleteVehicule/{idc}")
     public void deleteVehicule(@PathVariable long idc){
         VehiculeService.removeVehicule(idc);
     }
 
     @PutMapping("/updateVehicule")
-    public Vehicule updateVehicule(@RequestBody Vehicule c){
-        return VehiculeService.updateVehicule(c);
+    public VehiculeDTO updateVehicule(@RequestBody Vehicule c){
+        return mapper.toVehiculeDto(VehiculeService.updateVehicule(c));
     }
 
     @PutMapping("/affecterVehicule/{idVehicule}/{idAgence}")
-    public Vehicule affecterVehicule(@PathVariable Long idVehicule, @PathVariable Long idAgence){
-        return VehiculeService.affecterVehicule(idVehicule, idAgence);
+    public VehiculeDTO affecterVehicule(@PathVariable Long idVehicule, @PathVariable Long idAgence){
+        return mapper.toVehiculeDto(VehiculeService.affecterVehicule(idVehicule, idAgence));
     }
 
     @PutMapping("/affecterEquipement/{idVehicule}/{idEquipement}")
-    public Vehicule affecterEquipement(@PathVariable Long idVehicule, @PathVariable Long idEquipement){
-        return VehiculeService.affecterEquipement(idVehicule, idEquipement);
+    public VehiculeDTO affecterEquipement(@PathVariable Long idVehicule, @PathVariable Long idEquipement){
+        return mapper.toVehiculeDto(VehiculeService.affecterEquipement(idVehicule, idEquipement));
     }
 
     @PutMapping("/desaffecterEquipement/{idVehicule}/{idEquipement}")
-    public Vehicule desaffecterEquipement(@PathVariable Long idVehicule, @PathVariable Long idEquipement){
-        return VehiculeService.desaffecterEquipement(idVehicule, idEquipement);
+    public VehiculeDTO desaffecterEquipement(@PathVariable Long idVehicule, @PathVariable Long idEquipement){
+        return mapper.toVehiculeDto(VehiculeService.desaffecterEquipement(idVehicule, idEquipement));
     }
 
     // ----- Atelier Keywords -----
 
     // Q1
     @GetMapping("/getByMarque/{marque}")
-    public List<Vehicule> getVehiculesByMarque(@PathVariable String marque){
-        return VehiculeService.getVehiculesByMarque(marque);
+    public List<VehiculeDTO> getVehiculesByMarque(@PathVariable String marque){
+        return mapper.toVehiculeDtoList(VehiculeService.getVehiculesByMarque(marque));
     }
 
     // Q2
     @GetMapping("/getByCategorie/{categorie}")
-    public List<Vehicule> getVehiculesByCategorie(@PathVariable CategorieVehicule categorie){
-        return VehiculeService.getVehiculesByCategorie(categorie);
+    public List<VehiculeDTO> getVehiculesByCategorie(@PathVariable CategorieVehicule categorie){
+        return mapper.toVehiculeDtoList(VehiculeService.getVehiculesByCategorie(categorie));
     }
 
     // Q3
     @GetMapping("/getDisponibles")
-    public List<Vehicule> getVehiculesDisponibles(){
-        return VehiculeService.getVehiculesDisponibles();
+    public List<VehiculeDTO> getVehiculesDisponibles(){
+        return mapper.toVehiculeDtoList(VehiculeService.getVehiculesDisponibles());
     }
 
     // Q5
     @GetMapping("/getByMarqueContenant/{marque}")
-    public List<Vehicule> getVehiculesByMarqueContenant(@PathVariable String marque){
-        return VehiculeService.getVehiculesByMarqueContenant(marque);
+    public List<VehiculeDTO> getVehiculesByMarqueContenant(@PathVariable String marque){
+        return mapper.toVehiculeDtoList(VehiculeService.getVehiculesByMarqueContenant(marque));
     }
 
     // Q8
     @GetMapping("/getTarifSuperieurA/{tarif}")
-    public List<Vehicule> getVehiculesTarifSuperieurA(@PathVariable BigDecimal tarif){
-        return VehiculeService.getVehiculesTarifSuperieurA(tarif);
+    public List<VehiculeDTO> getVehiculesTarifSuperieurA(@PathVariable BigDecimal tarif){
+        return mapper.toVehiculeDtoList(VehiculeService.getVehiculesTarifSuperieurA(tarif));
     }
 
     // Q11
     @GetMapping("/getDisponiblesByMarque/{marque}")
-    public List<Vehicule> getVehiculesDisponiblesByMarque(@PathVariable String marque){
-        return VehiculeService.getVehiculesDisponiblesByMarque(marque);
+    public List<VehiculeDTO> getVehiculesDisponiblesByMarque(@PathVariable String marque){
+        return mapper.toVehiculeDtoList(VehiculeService.getVehiculesDisponiblesByMarque(marque));
     }
 }

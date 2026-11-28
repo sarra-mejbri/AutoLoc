@@ -3,42 +3,42 @@ package tn.esprit.autoloc.web.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.autoloc.domain.Client;
+import tn.esprit.autoloc.dto.ClientDTO;
 import tn.esprit.autoloc.service.IclientService;
+import tn.esprit.autoloc.service.ProjetMapper;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/client")
-
-
 public class ClientController {
+
     private final IclientService clientService;
+    private final ProjetMapper mapper;
+
     @PostMapping("/addClient")
-    public Client addClient(@RequestBody Client c){
-        return clientService.addClient(c);
+    public ClientDTO addClient(@RequestBody Client c){
+        return mapper.toClientDto(clientService.addClient(c));
     }
+
     @GetMapping("/getClients")
-    public List<Client> getAllCLients(){
-        return clientService.retrieveAllClients();
+    public List<ClientDTO> getAllCLients(){
+        return mapper.toClientDtoList(clientService.retrieveAllClients());
     }
+
     @GetMapping("/getClientId/{idc}")
-    public Client getClientById(@PathVariable long idc){
-        return clientService.retrieveClient(idc);
+    public ClientDTO getClientById(@PathVariable long idc){
+        return mapper.toClientDto(clientService.retrieveClient(idc));
     }
+
     @DeleteMapping("/deleteClient/{idc}")
     public void deleteClient(@PathVariable long idc){
-     clientService.removeClient(idc);
+        clientService.removeClient(idc);
     }
 
     @PutMapping("/updateClient")
-    public Client updateClient(@RequestBody Client c){
-        return clientService.updateClient(c);
+    public ClientDTO updateClient(@RequestBody Client c){
+        return mapper.toClientDto(clientService.updateClient(c));
     }
-
-
-
-
-
 }

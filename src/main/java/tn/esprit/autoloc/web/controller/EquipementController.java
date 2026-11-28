@@ -3,8 +3,9 @@ package tn.esprit.autoloc.web.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.autoloc.domain.Equipement;
+import tn.esprit.autoloc.dto.EquipementDTO;
 import tn.esprit.autoloc.service.IequipementService;
-import tn.esprit.autoloc.service.ImaintenanceService;
+import tn.esprit.autoloc.service.ProjetMapper;
 
 import java.util.List;
 
@@ -12,27 +13,32 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/equipement")
 public class EquipementController {
+
     private final IequipementService equipementService;
+    private final ProjetMapper mapper;
+
     @PostMapping("/addEquipement")
-    public Equipement addEquipement(@RequestBody Equipement c){
-        return equipementService.addEquipement(c);
+    public EquipementDTO addEquipement(@RequestBody Equipement c){
+        return mapper.toEquipementDto(equipementService.addEquipement(c));
     }
+
     @GetMapping("/getEquipements")
-    public List<Equipement> getAllEquipements(){
-        return equipementService.retrieveAllEquipements();
+    public List<EquipementDTO> getAllEquipements(){
+        return mapper.toEquipementDtoList(equipementService.retrieveAllEquipements());
     }
+
     @GetMapping("/getEquipementId/{idc}")
-    public Equipement getEquipementById(@PathVariable long idc){
-        return equipementService.retrieveEquipement(idc);
+    public EquipementDTO getEquipementById(@PathVariable long idc){
+        return mapper.toEquipementDto(equipementService.retrieveEquipement(idc));
     }
+
     @DeleteMapping("/deleteEquipement/{idc}")
     public void deleteEquipement(@PathVariable long idc){
         equipementService.removeEquipement(idc);
     }
 
     @PutMapping("/updateEquipement")
-    public Equipement updateEquipement(@RequestBody Equipement c){
-        return equipementService.updateEquipement(c);
+    public EquipementDTO updateEquipement(@RequestBody Equipement c){
+        return mapper.toEquipementDto(equipementService.updateEquipement(c));
     }
-    
 }

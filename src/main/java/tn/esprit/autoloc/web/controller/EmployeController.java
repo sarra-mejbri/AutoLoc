@@ -3,7 +3,9 @@ package tn.esprit.autoloc.web.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.autoloc.domain.Employe;
+import tn.esprit.autoloc.dto.EmployeDTO;
 import tn.esprit.autoloc.service.IemployeService;
+import tn.esprit.autoloc.service.ProjetMapper;
 
 import java.util.List;
 
@@ -11,36 +13,42 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/employe")
 public class EmployeController {
+
     private final IemployeService employeService;
+    private final ProjetMapper mapper;
+
     @PostMapping("/addEmploye")
-    public Employe addEmploye(@RequestBody Employe c){
-        return employeService.addEmploye(c);
+    public EmployeDTO addEmploye(@RequestBody Employe c){
+        return mapper.toEmployeDto(employeService.addEmploye(c));
     }
+
     @GetMapping("/getEmployes")
-    public List<Employe> getAllEmployes(){
-        return employeService.retrieveAllEmployes();
+    public List<EmployeDTO> getAllEmployes(){
+        return mapper.toEmployeDtoList(employeService.retrieveAllEmployes());
     }
+
     @GetMapping("/getEmployeId/{idc}")
-    public Employe getEmployeById(@PathVariable long idc){
-        return employeService.retrieveEmploye(idc);
+    public EmployeDTO getEmployeById(@PathVariable long idc){
+        return mapper.toEmployeDto(employeService.retrieveEmploye(idc));
     }
+
     @DeleteMapping("/deleteEmploye/{idc}")
     public void deleteEmploye(@PathVariable long idc){
         employeService.removeEmploye(idc);
     }
 
     @PutMapping("/updateEmploye")
-    public Employe updateEmploye(@RequestBody Employe c){
-        return employeService.updateEmploye(c);
+    public EmployeDTO updateEmploye(@RequestBody Employe c){
+        return mapper.toEmployeDto(employeService.updateEmploye(c));
     }
 
     @PutMapping("/desaffecterEmploye/{idEmploye}")
-    public Employe desaffecterEmploye(@PathVariable Long idEmploye){
-        return employeService.desaffecterEmploye(idEmploye);
+    public EmployeDTO desaffecterEmploye(@PathVariable Long idEmploye){
+        return mapper.toEmployeDto(employeService.desaffecterEmploye(idEmploye));
     }
 
     @PutMapping("/affecterEmploye/{idEmploye}/{idAgence}")
-    public Employe affecterEmploye(@PathVariable Long idEmploye, @PathVariable Long idAgence){
-        return employeService.affecterEmploye(idEmploye, idAgence);
+    public EmployeDTO affecterEmploye(@PathVariable Long idEmploye, @PathVariable Long idAgence){
+        return mapper.toEmployeDto(employeService.affecterEmploye(idEmploye, idAgence));
     }
 }
